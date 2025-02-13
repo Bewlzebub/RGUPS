@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Салон видеопроката</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Салон видеопроката</h1>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Название фильма</th>
+        <th>Жанр</th>
+        <th>Рейтинг</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Интерстеллар</td>
+        <td>Фантастика</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>Начало</td>
+        <td>Триллер</td>
+        <td>8</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onclick="addRow()">Добавить строку</button>
+  <button onclick="sortTable()">Сортировать по рейтингу</button>
+  <button onclick="filterTable()">Фильтровать (рейтинг > 8)</button>
+  <button onclick="searchTable()">Поиск (по жанру)</button>
+  <button onclick="saveToFile()">Сохранить в файл</button>
+  <button onclick="loadFromFile()">Загрузить из файла</button>
+  <button onclick="drawChart()">Построить график</button>
+
+  <canvas id="chart" width="400" height="200"></canvas>
+
+  <script>
+    // Добавление строки
+    function addRow() {
+      const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+      newRow.innerHTML = `
+        <td><input type="text" placeholder="Название фильма"></td>
+        <td><input type="text" placeholder="Жанр"></td>
+        <td><input type="number" placeholder="Рейтинг"></td>
+      `;
+    }
+
+    // Сортировка таблицы
+    function sortTable() {
+      const table = document.getElementById('dataTable');
+      const rows = Array.from(table.rows).slice(1);
+      rows.sort((a, b) => {
+        const ratingA = parseFloat(a.cells[2].innerText || a.cells[2].querySelector('input').value);
+        const ratingB = parseFloat(b.cells[2].innerText || b.cells[2].querySelector('input').value);
+        return ratingB - ratingA;
+      });
+      rows.forEach(row => table.appendChild(row));
+    }
+
+    // Фильтрация таблицы
+    function filterTable() {
+      const table = document.getElementById('dataTable');
+      const rows = Array.from(table.rows).slice(1);
+      rows.forEach(row => {
+        const rating = parseFloat(row.cells[2].innerText || row.cells[2].querySelector('input').value);
+        row.style.display = rating > 8 ? '' : 'none';
+      });
+    }
+
+    // Поиск в таблице
+    function searchTable() {
+      const genre = prompt('Введите жанр для поиска:');
+      const table = document.getElementById('dataTable');
+      const rows = Array.from(table.rows).slice(1);
+      rows.forEach(row => {
+        const rowGenre = row.cells[1].innerText || row.cells[1].querySelector('input').value;
+        row.style.display = rowGenre.includes(genre) ? '' : 'none';
+      });
+    }
+
+    // Сохранение данных в файл
+    function saveToFile() {
+      const table = document.getElementById('dataTable');
+      const rows = Array.from(table.rows).slice(1);
+      const data = rows.map(row => {
+        return Array.from(row.cells).map(cell => cell.innerText || cell.querySelector('input').value).join(',');
+      }).join('\n');
+      const blob = new Blob([data], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'data.txt';
+      link.click();
+    }
+
+    // Загрузка данных из файла
+    function loadFromFile() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.txt';
+      input.onchange = event => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+          const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+          table.innerHTML = '';
+          const rows = reader.result.split('\n');
+          rows.forEach(row => {
+            const cells = row.split(',');
+            const newRow = table.insertRow();
+            cells.forEach(cell => {
+              const newCell = newRow.insertCell();
+              newCell.textContent = cell;
+            });
+          });
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    // Построение графика
+    function drawChart() {
+        const table = document.getElementById('dataTable');
+        const rows = Array.from(table.rows).slice(1); // Пропускаем заголовок таблицы
+
+        // Извлекаем данные из таблицы
+        const labels = rows.map(row => row.cells[0].innerText.trim());
+        const data = rows.map(row => parseFloat(row.cells[2].innerText.trim()));
+
+        // Проверяем, что данные корректны
+        if (labels.length === 0 || data.some(isNaN)) {
+            console.error('Ошибка: данные таблицы некорректны.');
+            return;
+        }
+
+        // Получаем контекст для рисования графика
+        const ctx = document.getElementById('chart').getContext('2d');
+
+        // Создаем график
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: 'Рейтинг фильмов',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+        }
+  </script>
+</body>
+</html>

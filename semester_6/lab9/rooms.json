@@ -1,0 +1,12 @@
+[
+    "{\"coderoom\":\"1\",\"numberPeople\":2,\"comfortType\":\"lux\",\"price\":100,\"dateroom\":null}",
+    "{\"coderoom\":\"2\",\"numberPeople\":3,\"comfortType\":\"standard\",\"price\":80,\"dateroom\":null}",
+    "{\"coderoom\":\"3\",\"numberPeople\":4,\"comfortType\":\"economy\",\"price\":60,\"dateroom\":null}",
+    "{\"coderoom\":\"4\",\"numberPeople\":1,\"comfortType\":\"lux\",\"price\":120,\"dateroom\":null}",
+    "{\"coderoom\":\"5\",\"numberPeople\":2,\"comfortType\":\"standard\",\"price\":90,\"dateroom\":null}",
+    "{\"coderoom\":\"6\",\"numberPeople\":3,\"comfortType\":\"lux\",\"price\":150,\"dateroom\":null}",
+    "{\"coderoom\":\"7\",\"numberPeople\":2,\"comfortType\":\"economy\",\"price\":50,\"dateroom\":null}",
+    "{\"coderoom\":\"8\",\"numberPeople\":1,\"comfortType\":\"standard\",\"price\":70,\"dateroom\":null}",
+    "{\"coderoom\":\"9\",\"numberPeople\":4,\"comfortType\":\"lux\",\"price\":200,\"dateroom\":null}",
+    "{\"coderoom\":\"10\",\"numberPeople\":3,\"comfortType\":\"economy\",\"price\":65,\"dateroom\":null}"
+]

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Expression App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    input {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <h1>Лаб12</h1>
+    <input id="var1" type="text" placeholder="Введите выражение, например: 12.3 * Math.pow(10, -1)">
+    <input id="var2" type="text" placeholder="Введите выражение, например: 15.4">
+    <input id="var3" type="text" placeholder="Введите выражение, например: 0.252 * Math.pow(12, 3)">
+    <button id="calculate">Вычислить</button>
+    <div id="result">Результат: </div>
+  
+    <script>
+      document.getElementById('calculate').addEventListener('click', () => {
+          try {
+              const x = eval(document.getElementById('var1').value);
+              const y = eval(document.getElementById('var2').value);
+              const z = eval(document.getElementById('var3').value);
+  
+              if (isNaN(x) || isNaN(y) || isNaN(z)) {
+                  document.getElementById('result').textContent = 'Результат: Введите корректные выражения!';
+                  return;
+              }
+  
+              const result = (Math.pow(y, x + 1) / (Math.cbrt(Math.abs(y - 2)) + 3)) +
+                  ((x + (y / 2)) / (2 * Math.abs(x + y))) * Math.pow(x + 1, (-1 / Math.sin(z)));
+  
+              document.getElementById('result').textContent = `Результат: ${result}`;
+          } catch (error) {
+              document.getElementById('result').textContent = 'Результат: Ошибка в выражении!';
+              console.error(error);
+          }
+      });
+    </script>
+  </body>
+</html>
