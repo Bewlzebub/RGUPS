@@ -1,7 +1,7 @@
 node_modules
 
 # Ignore SQL Server
-./sql_server/sqlserver_data
-./sql_server/backups
-./sql_server/.env
+sql_server/sqlserver_data/*
+sql_server/backups/*
+sql_server/.env
 

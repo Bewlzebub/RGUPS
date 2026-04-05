@@ -1,0 +1,22 @@
+services:
+  sqlserver:
+    # ЯВНО указываем версию 2022, так как 2025 может быть нестабильной
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_container
+    user: root
+    cap_add:
+      - SYS_PTRACE
+    environment:
+      ACCEPT_EULA: "Y"
+      # Убедитесь, что пароль сложный. Проверьте его в файле .env
+      MSSQL_SA_PASSWORD: ${password}
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      # КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: монтируем подпапку 'data', а не весь каталог mssql
+      - ./sqlserver_data/data:/var/opt/mssql/data
+      # Опционально, можно смонтировать и другие папки, если нужно
+      - ./sqlserver_data/log:/var/opt/mssql/log
+      - ./sqlserver_data/backups:/var/opt/mssql/backups
+    restart: unless-stopped
