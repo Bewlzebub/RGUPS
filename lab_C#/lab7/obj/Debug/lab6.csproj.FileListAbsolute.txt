@@ -1,0 +1,16 @@
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\bin\Debug\lab6.exe.config
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\bin\Debug\lab6.exe
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\bin\Debug\lab6.pdb
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.csproj.AssemblyReference.cache
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form1.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form2.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form3.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form4.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form5.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form6.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Properties.Resources.resources
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.csproj.GenerateResource.cache
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.csproj.CoreCompileInputs.cache
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.exe
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.pdb
+C:\Users\kosad\Desktop\Лабы 2026 C#\lab_C#\lab7\obj\Debug\lab6.Form7.resources
