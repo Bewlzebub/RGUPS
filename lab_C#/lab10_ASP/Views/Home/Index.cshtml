@@ -1,0 +1,46 @@
+﻿@using lab10_ASP.Tables
+@model IEnumerable<Студенты>
+
+@{
+    ViewData["Title"] = "Студенты";
+}
+
+<h1>Список студентов</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Код студента</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Кафедра/Факультет</th>
+            <th>Год рождения</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.КодСтудента</td>
+                <td>@item.Фамилия</td>
+                <td>@item.Имя</td>
+                <td>@item.Отчество</td>
+                <td>
+                    @if (item.КафедраNavigation != null)
+                    {
+                        <strong>@item.КафедраNavigation.Название</strong>
+                    
+                        <br />
+                        <small>Факультет: @item.КафедраNavigation.Факультет</small>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Не указана</span>
+                    }
+                </td>
+                <td>@item.ГодРождения</td>
+            </tr>
+        }
+    </tbody>
+</table>
