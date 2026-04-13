@@ -1,0 +1,93 @@
+﻿@model lab10_ASP.Tables.Студенты
+
+@{
+    ViewData["Title"] = "Добавление студента";
+}
+
+<h1>➕ Добавление нового студента</h1>
+<hr />
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <strong>Ошибка:</strong> @ViewBag.Error
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Фамилия" class="control-label fw-bold"></label>
+                <input asp-for="Фамилия" class="form-control" required />
+                <span asp-validation-for="Фамилия" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Имя" class="control-label fw-bold"></label>
+                <input asp-for="Имя" class="form-control" required />
+                <span asp-validation-for="Имя" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Отчество" class="control-label fw-bold"></label>
+                <input asp-for="Отчество" class="form-control" />
+                <span asp-validation-for="Отчество" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Кафедра" class="control-label fw-bold"></label>
+                <select asp-for="Кафедра" class="form-control" asp-items="@(new SelectList(ViewBag.Departments, "КодКафедры", "Название"))">
+                    <option value="">-- Выберите кафедру --</option>
+                </select>
+                <span asp-validation-for="Кафедра" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ГодРождения" class="control-label fw-bold"></label>
+                <input asp-for="ГодРождения" class="form-control" type="number" />
+                <span asp-validation-for="ГодРождения" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Пол" class="control-label fw-bold"></label>
+                <select asp-for="Пол" class="form-control">
+                    <option value="">-- Выберите пол --</option>
+                    <option value="М">Мужской</option>
+                    <option value="Ж">Женский</option>
+                </select>
+                <span asp-validation-for="Пол" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Адрес" class="control-label fw-bold"></label>
+                <input asp-for="Адрес" class="form-control" />
+                <span asp-validation-for="Адрес" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Город" class="control-label fw-bold"></label>
+                <input asp-for="Город" class="form-control" />
+                <span asp-validation-for="Город" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Телефон" class="control-label fw-bold"></label>
+                <input asp-for="Телефон" class="form-control" />
+                <span asp-validation-for="Телефон" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+                <a asp-action="Index" class="btn btn-secondary">↩️ Назад к списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

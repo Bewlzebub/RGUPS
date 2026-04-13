@@ -1,0 +1,49 @@
+﻿@model lab10_ASP.Tables.Студенты
+
+@{
+    ViewData["Title"] = "Детали студента";
+}
+
+<h1>📋 Информация о студенте</h1>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Код студента</dt>
+            <dd class="col-sm-9">@Model.КодСтудента</dd>
+
+            <dt class="col-sm-3">Фамилия</dt>
+            <dd class="col-sm-9">@Model.Фамилия</dd>
+
+            <dt class="col-sm-3">Имя</dt>
+            <dd class="col-sm-9">@Model.Имя</dd>
+
+            <dt class="col-sm-3">Отчество</dt>
+            <dd class="col-sm-9">@Model.Отчество</dd>
+
+            <dt class="col-sm-3">Кафедра</dt>
+            <dd class="col-sm-9">@(Model.КафедраNavigation?.Название ?? "—")</dd>
+
+            <dt class="col-sm-3">Факультет</dt>
+            <dd class="col-sm-9">@(Model.КафедраNavigation?.Факультет ?? "—")</dd>
+
+            <dt class="col-sm-3">Год рождения</dt>
+            <dd class="col-sm-9">@Model.ГодРождения</dd>
+
+            <dt class="col-sm-3">Пол</dt>
+            <dd class="col-sm-9">@Model.Пол</dd>
+
+            <dt class="col-sm-3">Адрес</dt>
+            <dd class="col-sm-9">@Model.Адрес</dd>
+
+            <dt class="col-sm-3">Город</dt>
+            <dd class="col-sm-9">@Model.Город</dd>
+
+            <dt class="col-sm-3">Телефон</dt>
+            <dd class="col-sm-9">@Model.Телефон</dd>
+        </dl>
+
+        <a asp-action="Edit" asp-route-id="@Model.КодСтудента" class="btn btn-primary">✏️ Редактировать</a>
+        <a asp-action="Index" class="btn btn-secondary">↩️ Назад к списку</a>
+    </div>
+</div>
